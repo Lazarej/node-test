@@ -9,11 +9,17 @@ app.use(morgan("dev")).use(express.json());
 
 sequelize.initDb()
 
-require('./src/routes/findAllPokemons')(app) 
-require('./src/routes/findPokemonByPk')(app)
-require('./src/routes/createPokemon')(app)
-require('./src/routes/updatePokemon')(app)
-require('./src/routes/deletePokemon')(app)
+require('./src/routes/pokemons.js/findAllPokemons')(app) 
+require('./src/routes/pokemons.js/findPokemonByPk')(app)
+require('./src/routes/pokemons.js/createPokemon')(app)
+require('./src/routes/pokemons.js/updatePokemon')(app)
+require('./src/routes/pokemons.js/deletePokemon')(app)
+require('./src/routes/user.js/login')(app)
+
+app.use(({res}) => {
+    const message = 'Impossible de trouver la ressource  demandée! Vous pouvez  essayer une autre URL'
+    res.status(404).json({message})
+})
 
 app.get("/", (req, res) => res.send("Hello ddz"));
 app.listen(port, () => console.log(`http://localhost:${port}`));
