@@ -16,10 +16,12 @@ require('./src/routes/pokemons.js/updatePokemon')(app)
 require('./src/routes/pokemons.js/deletePokemon')(app)
 require('./src/routes/user.js/login')(app)
 
+
+
+app.get("/", (req, res) => res.send("Hello ddz"));
+app.listen(port, () => console.log(`http://localhost:${port}`));
+
 app.use(({res}) => {
     const message = 'Impossible de trouver la ressource  demandée! Vous pouvez  essayer une autre URL'
     res.status(404).json({message})
 })
-
-app.get("/", (req, res) => res.send("Hello ddz"));
-app.listen(port, () => console.log(`http://localhost:${port}`));
